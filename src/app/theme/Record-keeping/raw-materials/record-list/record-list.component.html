@@ -1,0 +1,119 @@
+<div class="justify-content-center ">
+	<div class="row m-t-5 ">
+		<div class="col-md-3">
+			<button type="button" class="btn btn-success btn-block">
+				Create a record template
+			</button>
+		</div>
+		<div class="col-md-3">
+			<button [routerLink]="['./create']" type="button" class="btn btn-success btn-block">
+				Add a new record
+			</button>
+		</div>
+		<div class="col-md-3">
+			<button type="button" class="btn btn-success btn-block">
+				Summary
+			</button>
+		</div>
+		<div class="col-md-3">
+			<button type="button" class="btn btn-success btn-block">
+				Dashboard
+			</button>
+		</div>
+	</div>
+</div>
+<div class="card text-center">
+  <div class="card-header">
+    <div class="form-group row">
+      <div class="row col-sm-12">
+          <tag-input [ngClass]="'tag-select'" theme='bootstrap' [placeholder] = "'Search...'" [ngModel]="[]" [onlyFromAutocomplete]="true">
+              <tag-input-dropdown [displayBy]="'value'" [identifyBy]="'id'" [autocompleteItems]="autocompleteItemsAsObjects"></tag-input-dropdown>
+            </tag-input>
+      </div>
+    </div>
+  </div>
+  <div class="card-body" *ngIf="recordList.length > 0">
+    <div class="row">
+      <div class="table-responsive">
+        <ngx-datatable
+        class="data-table fullscreen"
+        [rows]="recordList"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="50"
+        [limit]="10"
+        [selected]="selected"
+        [selectionType]="'single'"
+        (activate)="onActivate($event)" 
+        (select)='onSelect($event)' (dblclick)="showDetails()">   
+        <ngx-datatable-column name="Date Created">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span>
+              {{row.createdDate | date:'dd/MM/yyyy'}}
+            </span>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="PO">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span >
+              {{row.po}}     
+            </span>
+          </ng-template>
+        </ngx-datatable-column>
+        <!-- <ngx-datatable-column name="Product">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span>
+              {{row.product.name}}
+            </span>
+          </ng-template>
+        </ngx-datatable-column> -->
+        <ngx-datatable-column name="Supplier">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span>
+              {{row.supplier.name}}
+            </span>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Lot No">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span>
+              {{row.lotNo}}
+            </span>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Container No">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span>
+              {{row.containerNo}}
+            </span>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Country">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span>
+              {{row.country}}
+            </span>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Status">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span>
+              In Progress
+            </span>
+          </ng-template>
+        </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="form-group row">
+      <div class="row col-sm-12">
+        <button [disabled]="selected.length == 0" type="button" class="btn btn-danger pull-right" (click)="openConfirmsSwal()"><i class="icofont icofont-delete-alt"></i></button>
+        <button type="button" class="btn btn-default pull-right"><i class="icofont icofont-edit-alt"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,82 @@
+<div class="sample-collection">
+  <div class="sample-collection  card">
+      <div class="table-head">
+        <div class="row table-row">
+          <div class="col-md-1 table-th action">
+            Samppling No
+          </div>
+          <div class="col-md-1 table-th action">
+            Supplier Lot
+          </div>
+          <div class="col-md-1 table-th action">
+            Picture Of case Label
+          </div>
+          <div class="col-md-2 table-th action">
+            Quality Analysis Sampling
+          </div>
+          <div class="col-md-3 table-th action">
+            Pathogen/Virus/Indicator <br> Organism Sampling
+          </div>
+          <div class='col-md-2 table-th action'>
+            Pesticides Sampling
+          </div>
+         <!--  <div class='col-md-2 table-th action'>
+            Pesticide sampling
+          </div> -->
+         <!--  <div class='col-md-2 table-th action'>
+            Indicator Organism Sampling
+          </div> -->
+           <div class='col-md-2 table-th action'>
+            Comments
+        </div>
+        </div>
+      </div>
+  </div>
+
+
+     <div class="table-head">
+      <div class="row table-row" *ngFor="let sample of samples">
+        <div class="col-md-1 table-th action">
+          {{sample.sampplingno}}
+
+        </div>
+        <div class="col-md-1 table-th action">
+            <select type="text" class="form-control" name="" >
+               <option >{{sample.testLot1}}</option>      
+          </select>
+        </div>
+        <div class="col-md-1 table-th action">
+      <a  href="./recordkeeping/raw-matrial/document-upload/123" class="image"><span class="fa fa-camera fa-2x "></span></a> 
+          {{sample.pictureofcaselabel}}
+        </div>
+        <div class="col-md-2 table-th action">
+         <span>             
+             <label>{{sample.qcanalysissampling}}</label> 
+             <input type="checkbox" calss="checkbox">
+         </span> 
+        </div>
+        <div class="col-md-3 table-th action">         
+         <label> {{sample.pesticidesampling}}</label>
+          <input type="checkbox" calss="checkbox"> 
+        </div>
+        <div class='col-md-2 table-th action'>
+           <label> {{sample.virussampling}}</label> 
+            <input type="checkbox" calss="checkbox">
+        </div>
+        <!-- <div class='col-md-2 table-th action'> -->
+        <!--    <input type="checkbox" calss="checkbox">
+         <label> {{sample.indicatororganismsampling}}</label>  -->
+        <!-- </div> -->
+         <div class='col-md-2 table-th action'>
+           <textarea type="text" class="form-control" name=""  placeholder="your text here"></textarea> 
+        </div>
+      </div>
+    </div>
+  <div class="button pull-right">
+                <span>
+                  <button type="button" class="btn btn-warning">Cancel</button>
+                  <button autofocus="" type="button" class="btn btn-success" >Save</button>
+                  <button type="button" class="btn btn-default" >Exit</button>
+               </span>
+      </div>
+</div>

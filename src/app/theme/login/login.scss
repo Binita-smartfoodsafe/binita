@@ -1,0 +1,27 @@
+.login{
+	 
+	/*background-image: url("/assets/images/auth/pic.png");*/
+	background-size: cover;
+	background-position:center;
+	/*opacity: 0.5;*/
+	  
+	.auth-box{
+		/*background:#3A8CAE;*/
+		margin-left:10px;
+	}
+	.text-left{
+		font-size: 14;
+		font-weight:600;
+
+	}
+	.sub-text {
+		color:	#F3FFFF;
+	}
+	.text-right{
+		color:	#F3FFFF;
+	}
+	.re-size{
+        height: 80px;
+        width: 80px;
+    }
+}

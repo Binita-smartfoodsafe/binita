@@ -1,0 +1,276 @@
+<div class="sample-preparation">
+  <div class="sample-preparation card">
+    <!-- <div class="table-head">
+      <div class="row table-row">
+        <div class="col-md-3 table-th ">
+          <div class="row">
+            <div class="col-md-6 action">
+              Sampling Method
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="">
+              <p>{{samplingmethod}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 table-th ">
+          <div class="row">
+            <div class="col-md-6 action">
+              Pathogen Test
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="">
+              <p>{{pathogentest}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 table-th ">
+          <div class="row">
+            <div class="col-md-6 action">
+              Virus Test
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="">
+              <p>{{virustest}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 table-th ">
+          <div class="row">
+            <div class="col-md-6 action">
+              Pesticides Test
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="">
+              <p>{{ pesticidestest}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!--  <div class="table-head">
+      <div class="row table-row">
+        <div class="col-md-2 table-th ">
+          <div class="row">
+            <div class="col-md-6 action">
+              Qc Analysis
+            </div>
+            <div class="col-md-6">
+               <select type="text" class="form-control" name="">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 table-th ">
+          <div class="row">
+            <div class="col-md-6 action">
+              Indicator test
+            </div>
+            <div class="col-md-6 ">
+              <select type="text" class="form-control" name="">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 table-th ">
+          <div class="row">
+            <div class="col-md-6 action">
+              Packing List
+            </div>
+            <div class="col-md-6 ">
+              <input type="text" class="form-control" name="">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 table-th email">
+          <div class="row">
+            <div class="col-md-6 action">
+              Prepared By
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="">
+              {{preparedby}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+  <div class="sample-preparation card">
+    <div class="table-head">
+      <div class="row table-row">
+        <div class="col-md-1 table-th action">
+          Supplier Lot
+        </div>
+        <div class="col-md-1 table-th action">
+          New Lot
+        </div>
+        <div class="col-md-1 table-th action">
+          If no Previous Po
+        </div>
+        <div class="col-md-1 table-th action">
+          Total Quality
+        </div>
+        <div class="col-md-1 table-th action">
+          Qc Analysys
+        </div>
+        <div class="col-md-1 table-th action">
+          Quality Planned For Sampling
+
+        </div>
+        <div class='col-md-1 table-th action'>
+          Indicator test
+        </div>
+        <div class='col-md-1 table-th action'>
+          Pathogen test
+        </div>
+        <div class='col-md-1 table-th action'>
+          Virus test
+        </div>
+        <div class='col-md-1 table-th action'>
+          Pesticides test
+        </div>
+        <div class='col-md-1 table-th action'>
+          Comments
+        </div>
+      </div>
+      <div class="row table-row" *ngFor="let item of samples">    <pre>{{ record | json}}</pre>
+        <div class="col-md-1 table-bdy actionraw">
+          <input type="text" class="form-control" name="" [(ngModel)]="item.supplierLot">
+        </div>
+        <div class="col-md-1 table-bdy actionraw">
+          <select class="form-control" [(ngModel)]="item.newLot" name=""  (ngModelChange)='changeNewLot(item)'>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+
+          </select>
+        </div>
+        <div class="col-md-1 table-bdy actionraw">
+          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.po">
+        </div>
+        <div class="col-md-1 table-bdy actionraw">
+          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.totalQuantity">
+        </div>
+        <!-- <div class="col-md-1 table-bdy actionraw">
+          <input type="text" class="form-control" name="" value="" [(ngModel)]="totalquality">
+        </div>
+        <div class="col-md-1 table-bdy actionraw">
+          <input type="text" class="form-control" name="" value="" [(ngModel)]="qcanalysys">
+        </div> -->
+        <div class="col-md-1 table-bdy actionraw">
+            <select class="form-control" [(ngModel)]="item.qualityAnalysis" name="">
+              <option [ngValue]="true">Yes</option>
+              <option [ngValue]="false">No</option>
+            </select>
+        </div>
+        <div class="col-md-1 table-bdy actionraw">
+          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.quantityPlanned">
+        </div>
+        <div class="col-md-1 table-bdy actionraw">
+          <select class="form-control" [(ngModel)]="item.indicatorTest" name="">
+            <option [ngValue]="true">Yes</option>
+            <option [ngValue]="false">No</option>
+          </select>
+        </div>
+        <div class="col-md-1 table-bdy actionraw">
+         {{item.pathogenTest}}
+        </div>
+        <div class="col-md-1 table-bdy actionraw">
+         {{item.virusTest}}
+        </div>
+        <div class="col-md-1 table-bdy actionraw">
+         {{item.pesticideTest}}
+        </div>
+         <div class='col-md-1 table-th action'>
+           <textarea type="text" class="form-control" name=""  placeholder="your text here"></textarea> 
+        </div>
+        <div class="col-md-1 table-bdy actionraw">
+       <span>
+         <a class="" href="" *ngIf="samples.length > 1" (click)="removeRow($event,index)"><span class="fa fa-trash"></span></a>
+       </span>
+
+        </div>
+      </div>
+    </div>
+    <span>
+        <a  href="" (click)="addRow($event)" class="add-another"><span class="fa fa-plus-circle fa-2x "></span></a> 
+    </span>
+
+  </div>
+  <div class="button pull-right">
+      <span>
+        <button type="button" class="btn btn-warning">Cancel</button>
+        <button autofocus="" type="button" class="btn btn-success" (item)='handleEvent($event)'(click)="saveSampleRecord()">Save</button>
+        <button type="button" class="btn btn-default">Exit</button>
+      </span>
+    </div>
+
+  <!-- <div class="add-item raw">
+    <form [formGroup]="itemAddForm" novalidate>
+      <div formArrayName="items">
+        <div class="" *ngFor="let item of itemAddForm.controls['items'].controls; let i=index">
+          <div [formGroupName]="i">
+            <div class="table-head">
+              <div class="row table-row">
+                <div class="col-md-2 table-bdy actionraw">
+                  <input type="text" class="form-control" name="" [(ngModel)]="item.supplierLot">
+                </div>
+                <div class="col-md-1 table-bdy actionraw">
+                  
+                  <select type="text" class="form-control" [(ngModel)]="item.newlot" name="" (ngModelChange)='changeTest(item)'>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+                <div class="col-md-1 table-bdy actionraw">
+                  <input type="text" class="form-control" name="" value="" [(ngModel)]="item.ifnopreviouspo">
+                </div>
+                <div class="col-md-1 table-bdy actionraw">
+                  {{item.totalquality}}
+                </div>
+                <div class="col-md-1 table-bdy actionraw ">
+                  <input type="text" class="form-control" name="" [(ngModel)]="sample.totalQuantity">
+                </div>
+                <div class="col-md-1 table-bdy actionraw">
+                  {{sample.quantityPlanned}}
+                </div>
+                <div class='col-md-1 table-bdy actionraw'>
+                  {{sample.pathogenTest}}
+                </div>
+                <div class='col-md-1 table-bdy actionraw'>
+                  {{sample.indicatorTest}}
+                </div>
+                <div class='col-md-1 table-bdy actionraw'>
+                  {{sample.virusTest}}
+                </div>
+                <div class='col-md-1 table-bdy actionraw'>
+                  {{sample.pesticideTest}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <a href="#" (click)="addMember($event)" class="add-another">
+    <span class="fa fa-plus"></span>Add Another</a>
+  <a class="" href="#">
+    <span class="fa fa-trash" (click)="delete($event,i)"></span>
+  </a>
+
+  
+</div> -->
+<!-- 
+<select class="form-control dropdown" (ngModel)="samplePreparation" 
+                name="samplePreparation" id="samplePreparation" required>
+              <option *ngFor="let samplePreparation of samplePreparations">
+                {{ samplePreparation.name }}
+              </option>
+</select> -->
+

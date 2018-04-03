@@ -1,0 +1,50 @@
+.quality-analysis{     
+    .card{
+     border-radius:5px;
+     box-shadow:rgba(4, 26, 55, 0.16);
+     border: none; 
+     border-top: 10px;
+     }  
+     .table-th,{
+          padding-top:8px;
+          padding-bottom: 8px;        
+     }
+    
+     .table-row{
+            margin-right: 2px;
+         }
+    
+ }
+ 
+ .table thead th{
+     border-bottom:none;
+     border-top:2px;
+     box-shadow:rgba(4, 26, 55, 0.16);
+     margin-top: 50px;
+ }
+
+  .action{
+     font-size: 12px;
+    font-weight: 700;
+    padding-top: 8px;
+    text-align: center;
+    text-transform: uppercase;
+
+ }
+.btn{
+     margin-top: 80px;  
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     
+           
+     } 
+
+.fa-chevron-circle-right{
+    font-size: 3em;
+ }  
+.actionraw{
+     font-size: 10px;
+    font-weight: 900;
+    padding-top: 8px;
+    text-align: center;
+    }

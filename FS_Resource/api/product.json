@@ -1,0 +1,20 @@
+{
+	"product":[
+		{
+			"name":"Mango Chunk",
+			"id":"Mango_Chunk"
+		},
+		{
+			"name":"Strawberry Medium",
+			"id":"Strawberry_Medium"
+		},
+		{
+			"name":"Mango Chunk Organic",
+			"id":"Mango_Chunk_Organic"
+		},
+		{
+			"name":"Mango Chunk Organic",
+			"id":"Mango_Chunk_Organic"
+		}
+	]
+}

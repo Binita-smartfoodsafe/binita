@@ -1,0 +1,49 @@
+<div class='raw-dyanamic menu card' >
+  <ul class="raw-dyanamic">
+    <li *ngFor="let menu of menus" class=" col treeview {{menu.state}} checkbox  " >
+      <ng-container *ngIf="'children'!==menu.type" >
+          <span>{{menu.name}}</span>           
+      </ng-container>
+
+      <ng-container *ngIf="'children'===menu.type">
+         <input type="checkbox" name="checkbox" class="checkbox"  [(ngModel)]="menu.checked" (click)="$event.preventDefault();menu.subopen=!menu.subopen" > 
+          <span>{{menu.name}}</span>
+        <ul class="treeview-menu" [style.display]="menu.subopen?'block':'none'">
+          <li *ngFor="let menuchildren of menu.children" >
+            <input type="checkbox" name="checkbox" class="checkbox" [value]="menu.name"  > 
+              <span>{{menuchildren.name}}</span> 
+              <span class="action">                    
+                <input type="radio" name="radiogroup" class="radio"  (change)="onMenusChange($event, name)">
+                  Edit
+              </span>
+              <span class="action">
+                <input type="radio" name="radiogroup" class="radio"  (change)="onMenusChange($event, name)" >
+                  ReadOnly
+              </span>
+          </li>
+        </ul>
+      </ng-container>
+    </li>
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

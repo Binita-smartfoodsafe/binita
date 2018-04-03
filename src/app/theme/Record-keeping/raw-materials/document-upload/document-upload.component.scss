@@ -1,0 +1,48 @@
+.raw-materials ,.doc-upload{    
+  .card{
+    border-radius:5px;
+    box-shadow:rgba(4, 26, 55, 0.16);
+    border: none; 
+    border-top: 10px;
+  } 
+  .data-table{
+    padding-top:8px;
+    padding-bottom: 8px;  
+    margin-left: 8px;
+  }
+  .form-group{
+    padding-top:8px;
+    padding-bottom: 8px;   
+  }
+  .btn{
+    margin-top: 10px; 
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+}
+
+.table thead th{
+  border-bottom:none;
+  border-top:2px;
+  box-shadow:rgba(4, 26, 55, 0.16);
+  margin-top: 50px;
+}
+.box{
+  border-radius:5px;
+  box-shadow:rgba(4, 26, 55, 0.16);
+}
+
+.heading{
+  height: 5px;
+}
+.action{
+  font-size: 11px;
+  font-weight: 700;
+  padding-top: 8px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.media-left img{
+  height: 50px;
+}

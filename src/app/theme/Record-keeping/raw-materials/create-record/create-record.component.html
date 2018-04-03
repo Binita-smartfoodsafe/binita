@@ -1,0 +1,281 @@
+<!-- <div class="row  justify-content-center ">
+	<div class="row m-t-5 ">
+		<div class="col-md-4">
+			<button [routerLink]="['./rawmaterialdetails']" type="button" class="btn btn-primary">
+				Create New Record
+			</button>
+
+		</div>
+		<div class="col-md-4">
+			<button [routerLink]="['./rawmaterialtable']" type="button" class="btn btn-primary">
+				Open In Progress Record
+			</button>
+
+		</div>
+		<div class="col-md-4">
+			<button [routerLink]="['./rawmaterialtable']" type="button" class="btn btn-primary">
+				Open completed Record
+			</button>
+
+		</div>
+	</div>
+</div> -->
+<form [formGroup]="dataForm" (ngSubmit)="onRecordCreate()" novalidate>
+	<div class="raw-materials justify-content-center card">  
+		<div class="col-md-12 m-t-5 ">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Po</label>  
+						</div>
+						<div class="col-md-8 form group">
+							<input type="text" class="form-control" placeholder="Po" [(ngModel)]="po" formControlName="po">
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Lot No</label>
+						</div>
+						<div class="col-md-8 form group">
+							<input type="text" class="form-control" placeholder="Lot No" [(ngModel)]="lotNo" formControlName="lotNo">
+
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Container No</label>
+						</div>
+						<div class="col-md-8 form group">
+							<input type="text" class="form-control" placeholder=" Container No" [(ngModel)]="containerNo" formControlName="containerNo">
+
+						</div>
+					</div>
+				</div>
+				<!-- <div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Created By</label>
+						</div>
+						<div class="col-md-8 form group">
+							<input type="text" [readOnly]="true" name="input" class="form-control form-control-primary" [(ngModel)]="createdBy" formControlName="createdBy">
+						</div>
+					</div>
+				</div> -->
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Plant</label>  
+						</div>
+						<div class="col-md-8 form group">
+							<ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="plantList" placeholder='Select Plant' [(ngModel)]="plant"
+							 (ngModelChange)='changePlant()' formControlName="plant"></ng-select>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Date Created</label>
+						</div>
+						<div class="col-md-8 form group">
+							<div class="form-group ">
+								<div class="input-group">
+									<input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="createdDate" formControlName="createdDate" ngbDatepicker
+									 #d="ngbDatepicker">
+									<div class="input-group-addon bg-default" (click)="d.toggle()">
+										<span class="icofont icofont-ui-calendar"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Supplier</label>
+						</div>
+						<div class="col-md-8 form group">
+							<ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="supplierList" placeholder='Select Supplier' [(ngModel)]="supplier"
+							 (ngModelChange)='changeSupplier()' formControlName="suplier"></ng-select>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Broker</label>
+						</div>
+						<div class="col-md-8 form group">
+							<ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="brokerList" placeholder='Select Broker' [(ngModel)]="broker"
+							 (ngModelChange)='changeBroker()' formControlName="broker"></ng-select>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">COO</label>
+						</div>
+						<div class="col-md-8 form group">
+							<ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="selectedSupplier.address" placeholder='Select COO' [(ngModel)]="coo"
+							 formControlName="coo"></ng-select>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Raw Material Group</label>
+						</div>
+						<div class="col-md-8 form group">
+							<!-- <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="materialGrpList" placeholder='Select Product' [(ngModel)]="materialGrp"
+							 (ngModelChange)='changeProduct()' formControlName="materialGrp"></ng-select> -->
+							 <select name="select" class="form-control form-control-default" [(ngModel)]="materialGrp" formControlName="materialGrp" (ngModelChange)='changeMaterialGroup()'>
+								<option *ngFor="let item of materialGrpList" value={{item}}>
+									{{item}}
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Raw Material</label>
+						</div>
+						<div class="col-md-8 form group">
+							<ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="materialList" placeholder='Select Material' [(ngModel)]="material"
+							 formControlName="material" (ngModelChange)='changeMaterial()'></ng-select>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Variety</label>
+						</div>
+						<div class="col-md-8 form group">
+							<select name="select" class="form-control form-control-default" [(ngModel)]="variety" formControlName="variety">
+								<option *ngFor="let item of selectedMaterial.variety" value={{item}}>
+									{{item}}
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Kosher</label>
+						</div>
+						<div class="col-md-8 form-radio">
+							<div class="radio radiofill radio-inline">
+								<label>
+									<input type="radio" formControlName="kosher" [(ngModel)]="kosher" value="true">
+									<i class="helper"></i>Yes
+								</label>
+							</div>
+							<div class="radio radiofill radio-inline">
+								<label>
+									<input type="radio" formControlName="kosher" [(ngModel)]="kosher" value="false">
+									<i class="helper"></i>No
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Approved</label>
+						</div>
+						<div class="col-md-8 form-radio">
+							<div class="radio radiofill radio-inline">
+								<label>
+									<input type="radio" formControlName="approved" [(ngModel)]="isApproved" value="true">
+									<i class="helper"></i>Yes
+								</label>
+							</div>
+							<div class="radio radiofill radio-inline">
+								<label>
+									<input type="radio" formControlName="approved" [(ngModel)]="isApproved" value="false">
+									<i class="helper"></i>No
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Organic</label>
+						</div>
+						<div class="col-md-8 form-radio">
+							<div class="radio radiofill radio-inline">
+								<label>
+									<input type="radio" formControlName="organic" [(ngModel)]="organicValue" value="true">
+									<i class="helper"></i>Yes
+								</label>
+							</div>
+							<div class="radio radiofill radio-inline">
+								<label>
+									<input type="radio" formControlName="organic" [(ngModel)]="organicValue" value="false">
+									<i class="helper"></i>No
+								</label>
+							</div>
+							<!-- <input type="text" name="input" class="form-control form-control-primary" [(ngModel)]="organic" formControlName="organic"> -->
+						</div>
+					</div>
+				</div>
+				<!-- <div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Raw Material Code</label>
+						</div>
+						<div class="col-md-8 form group">
+							<input type="text" [readOnly]="true" name="input" class="form-control form-control-primary" [(ngModel)]="selectedProduct.productId" formControlName="productCode">
+						</div>
+					</div>
+				</div> -->
+
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
+					<div class="row ">
+						<div class="col-md-4 form group">
+							<label for="name">Non-GMO</label>
+						</div>
+						<div class="col-md-8 form-radio">
+							<div class="radio radiofill radio-inline">
+								<label>
+									<input type="radio" formControlName="nonGMO" [(ngModel)]="nonGMO" value="true">
+									<i class="helper"></i>Yes
+								</label>
+							</div>
+							<div class="radio radiofill radio-inline">
+								<label>
+									<input type="radio" formControlName="nonGMO" [(ngModel)]="nonGMO" value="false">
+									<i class="helper"></i>No
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class=" row justify-content-center">
+			<p>
+				<button [disabled]="!dataForm.valid" type="submit" class="btn btn-success" (click)="onSubmit">Save & Submit</button>
+				<button (click)="dataForm.reset()" type="button" class="btn btn-default">Cancel</button>
+			</p>
+
+		</div>
+
+	</div>
+</form>
+

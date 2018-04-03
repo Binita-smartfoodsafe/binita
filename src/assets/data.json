@@ -1,0 +1,22 @@
+{
+	"data":[
+		{
+			"name":"Frexport",
+			"id":1,
+		    "plant":"Montreal",
+		    "created_by":"user",
+		    "supplier":"Montreal",
+		    "broker":"Montreal",
+		    "coo":123,
+		    "approved":"user",
+		    "product":"mango",
+		    "product_code":1234,
+		    "variety":"",
+		    "kosher":"",
+		    "non_gmo":"",
+		    "po":12345,
+		    "container_id":1230,
+		    "lot_id":3210
+		}
+	]
+}

@@ -1,0 +1,28 @@
+<div class="slider"  >
+
+	<span class="">
+		<button (click)="up()" [disabled]="numberIndex <=0" class="control btn btn-light up m-auto"><span class="fa fa-chevron-up"></span></button>
+	</span>
+
+	<!-- <div class="col-md-10"> -->
+		<!-- <div class="row"> -->
+		<div class="row" [class.slideup]="slideup" [class.slidedown]="slidedown" >
+			<div *ngFor="let curimage of curimages" class="col product" >
+				<div class="product-image text-center">
+			    	<img [src]="curimage.url"  [alt]="curimage.name" class="image-fluid">
+			    </div>
+			   	<a class='name' *ngIf="curimage && curimage.routerLink && ''!==curimage.routerLink" [routerLink]="curimage.routerLink" [queryParams]="curimage.queryParams"><p>{{curimage.name}}</p></a>           
+			   	<a *ngIf="curimage && curimage.routerLink && ''==curimage.routerLink" [href]="curimage.href||'#'" ><p>{{curimage.name}}</p></a>
+			  <!--  	<span *ngIf="curimage.desc" class="description">
+			   		{{curimage.desc}}
+			   	</span> -->
+			</div>
+		</div>
+	<!-- </div> -->
+
+	<span class="">
+    	<button  (click)="down()"  [disabled]="numberIndex + displayItem >= images.length" class="control btn btn-light down m-auto"><span class="fa fa-chevron-down"></span></button>
+    </span>
+
+</div>
+      

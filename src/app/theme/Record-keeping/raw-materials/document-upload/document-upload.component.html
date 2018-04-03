@@ -1,0 +1,202 @@
+<div class="doc-upload">
+	<div class="doc-upload card">
+		<div class="table-head " *ngIf="recordDetails._id">
+			<div class="row table-row">
+				<div class="col-md-2 data-table ">
+					<div class="row">
+						<div class="col-md-5 action">
+							Plant
+						</div>
+						<div class="col-md-7">
+							<input type="text" [readOnly]="true" class="form-control" name="" [(ngModel)]="recordDetails.plant.name">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 data-table ">
+					<div class="row">
+						<div class="col-md-5 action">
+							Supplier
+						</div>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.supplier.name">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 data-table ">
+					<div class="row">
+						<div class="col-md-5 action">
+							Broker
+						</div>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.broker.name">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 data-table ">
+					<div class="row">
+						<div class="col-md-5 action">
+							Country
+						</div>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.country">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 data-table email">
+					<div class="row">
+						<div class="col-md-5 action"> 
+							Rawmaterial
+						</div>
+						<div class="col-md-7">
+							<!-- <input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.rawmaterial"> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="table-head" *ngIf="recordDetails._id">
+			<div class="row table-row">
+				<div class="col-md-2 data-table ">
+					<div class="row">
+						<div class="col-md-5 action">
+							Po
+						</div>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.poa">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 data-table ">
+					<div class="row">
+						<div class="col-md-5 action">
+							Cont. No
+						</div>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.containerNo">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 data-table ">
+					<div class="row">
+						<div class="col-md-5 action">
+							Lot No
+						</div>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.lotNo">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 data-table ">
+					<div class="row">
+						<div class="col-md-5 action">
+							Approved
+						</div>
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.approved">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 data-table ">
+					<div class="row">
+						<div class="col-md-5 action">
+							Rawmaterial Code
+						</div>
+						<div class="col-md-7">
+							<!-- <input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.rawmaterial.rawmaterialId"> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-12 ">
+		<ngb-tabset type="tabs">
+			<ngb-tab title="Document" >
+				<ng-template ngbTabContent>
+					<div class="table-responsive card">
+						<table class="table table-framed ">
+							<thead>
+								<tr>
+									<th>Document</th>
+									<th>Attachment</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let type of fileList">
+									<td>{{type.title}}</td>
+									<td>
+										<!-- <a href="" (click)="addFile($event,type.attachmentList)" class="add-another">
+										<span class="fa fa-plus"></span>Add</a> -->
+										<div class="file-add">
+											<form novalidate>
+												<div>
+													<!-- <div class="" *ngFor="let item of type.attachmentList; let i=index"> -->
+													<div>
+														<div class="row">
+															<div class="col-md-5">
+																<div class="form-group">
+																	<label class="custom-file mb-3">
+																		<input type="file" ng2FileSelect ng2FileDrop [uploader]="type.attachmentList" multiple
+																		 class="custom-file-input">
+																		<span class="custom-file-control">Drag $ drop your files here</span>
+																	</label>
+
+																	<ul class="list-inline">
+																		<li class="list-group-item media-left" *ngFor="let item of type.attachmentList.queue">
+																			<img src="" imgPreview [image]="item?._file" class="media-object" />
+																			<span class="fa fa-trash" (click)="delete($event,index,type.attachmentList.queue)"></span>
+																		</li>
+																	</ul>
+
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- </div> -->
+												</div>
+											</form>
+										</div>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class=" row justify-content-center">
+							<p>
+								<button type="button" class="btn btn-warning" (click)="cancel($event)">Cancel</button>
+								<button autofocus="" type="button" class="btn btn-success" (click)="uploadFile(filesAddForm,$event) ">Save</button>
+								<button type="button" class="btn btn-default" (click)="exit($event)">Exit</button>
+							</p>
+						</div>
+					</div>
+				</ng-template>
+			</ngb-tab>
+			<ngb-tab title="Sample Preparation">
+				<ng-template ngbTabContent>
+					<app-sample-preparation></app-sample-preparation>
+				</ng-template>
+			</ngb-tab>
+			<ngb-tab title="Sample Collection">
+				<ng-template ngbTabContent>
+					<app-sample-collection></app-sample-collection>
+				</ng-template>
+			</ngb-tab>
+			<ngb-tab title="Quality Analysis">
+				<ng-template ngbTabContent>
+					<app-quality-analysis></app-quality-analysis>
+				</ng-template>
+			</ngb-tab>
+			<ngb-tab title="Micro/Chemical Analysis">
+				<ng-template ngbTabContent>
+					<p></p>
+				</ng-template>
+			</ngb-tab>
+			<ngb-tab title="Summary">
+				<ng-template ngbTabContent>
+					<p></p>
+				</ng-template>
+			</ngb-tab>
+		</ngb-tabset>
+	</div>
+</div>

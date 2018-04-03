@@ -1,0 +1,235 @@
+<div class="row  justify-content-center ">
+	<div class="row m-t-5 ">
+	    <div class="col-md-4">
+	        	<button  [routerLink]="['./rawmaterialdetails']" type="button" class="btn btn-primary">
+	        		Create New Record
+	        	</button>
+	            
+	    </div>
+	    <div class="col-md-4">
+	        	<button [routerLink]="['./rawmaterialtable']"  type="button" class="btn btn-primary">
+	        	 Open In Progress Record
+	        	</button>
+	           
+	    </div>
+	    <div class="col-md-4">
+	        	<button [routerLink]="['./rawmaterialtable']"  type="button" class="btn btn-primary">
+	        	 Open completed Record
+	        	</button>
+	    </div>
+	</div>   
+</div>
+<form  [formGroup]="dataForm" (ngSubmit)="onRecordCreate()" novalidate>
+		<div class="raw-materials justify-content-center card">
+			<div class="col-md-12 m-t-5 ">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Plant</label>    <pre>{{plant | json}}</pre>
+				          </div>
+				          <div class= "col-md-8 form group">  
+					          <!-- <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="plantList" placeholder='Select Plant' [(ngModel)]="plant" (change)='changePlant(plant)' formControlName="plant">
+					          	
+					          </ng-select> -->
+					          <select class="form-control" formControlName="plant" (change)='changePlant()'  >
+								<option value="" >plant</option> 
+								<option *ngFor='let p of plant.data' [value]="p.name">{{p.name}}</option> 
+				 			</select>
+				          </div>
+				  	</div>        
+			 	 </div>
+			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Date Created</label>
+				          </div>
+				          <div class= "col-md-8 form group">	
+					            <div class="form-group ">
+					              <div class="input-group">
+					                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="createdDate" formControlName="createdDate" ngbDatepicker #d="ngbDatepicker">
+					                <div class="input-group-addon bg-default" (click)="d.toggle()" >
+					                  <span class="icofont icofont-ui-calendar"></span>
+					                </div>
+					              </div>
+					            </div>
+				          </div>
+				  	</div>        
+			 	 </div>
+			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Created By</label>
+				          </div>
+				          <div class= "col-md-8 form group">
+			          			<input type="text" name="input" class="form-control form-control-primary" [(ngModel)]="createdBy" formControlName="createdBy">      
+				          </div>
+				  	</div>        
+			 	 </div>
+				<!-- </div>	 -->
+			<!-- </div> -->
+			<!-- <div class="col-md-12"> -->
+				<!-- <div class="row"> -->
+					<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Supplier</label>  <!-- <pre>{{supplier | json}}</pre> -->
+				          </div>
+				          <div class= "col-md-8 form group">
+					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="supliers" placeholder='select suplier' [(ngModel)]="suplier" (change)='loadsupplier()'  formControlName="suplier"></ng-select>
+				          </div>
+				  	</div>        
+			 	 </div>
+			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Broker</label>
+				          </div>
+				          <div class= "col-md-8 form group">
+					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="brokers" placeholder='select broker' [(ngModel)]="broker" (change)='loadbroker()' formControlName="broker"></ng-select>
+				          </div>
+				  	</div>        
+			 	 </div>
+			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">COO</label>
+				          </div>
+				          <div class= "col-md-8 form group">
+					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="coos" placeholder='select coo' [(ngModel)]="coo" formControlName="coo"></ng-select>
+				          </div>
+				  	</div>        
+			 	 </div>
+				<!-- </div> -->	
+			<!-- </div>
+			<div class="col-md-12"> -->
+				<!-- <div class="row"> -->
+					<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Approved</label>
+				          </div>
+				          <div class= "col-md-8 form group">
+					          <select name="select" class="form-control form-control-primary" [(ngModel)]="approved" formControlName="approved">
+					            <option value="Yes">Yes</option>
+					             <option value="No">No</option>
+					          </select>  
+				          </div>
+				  	</div>        
+			 	 </div>
+			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Product</label>
+				          </div>
+				          <div class= "col-md-8 form group">
+					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="products" placeholder='select product' [(ngModel)]="product"  (change)='loadproduct()' formControlName="product"></ng-select>
+				          </div>
+				  	</div>        
+			 	 </div>
+			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Product Code</label>
+				          </div>
+				          <div class= "col-md-8 form group">
+					         <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="productCodes" placeholder='select product' [(ngModel)]="productCode" formControlName="productCode"></ng-select>
+				          </div>
+				  	</div>        
+			 	 </div>
+				<!-- </div> -->	
+			<!-- </div>
+			<div class="col-md-12"> -->
+				<!-- <div class="row"> -->
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Variety</label>
+				          </div>
+				          <div class= "col-md-8 form group">
+					          <select name="select" class="form-control form-control-primary" [(ngModel)]="variety" formControlName="variety">
+					            <option value="Yes">Yes</option>
+					             <option value="No">No</option>
+					          </select>  
+				          </div>
+				  	</div>        
+			 	</div>
+			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Kosher</label>
+				          </div>
+				          <div class= "col-md-8 form group">
+					          <select name="select" class="form-control form-control-primary" [(ngModel)]="kosher" formControlName="kosher">
+					            <option value="Yes">Yes</option>
+					             <option value="No">No</option>
+					          </select>  
+				          </div>
+				  	</div>        
+			 	 </div>
+			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" > 
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">NonGMO</label>
+				          </div>
+				          <div class= "col-md-8 form group">
+					          <select name="select" class="form-control form-control-primary" [(ngModel)]="nonGMO" formControlName="nonGMO">  
+					            <option value="Yes">Yes</option>  
+					             <option value="No">No</option>
+					          </select>  
+				          </div>
+				  	</div>        
+			 	 </div>
+				<!-- </div> -->	
+			<!-- </div>
+			<div class="col-md-12"> -->
+				<!-- <div class="row"> -->
+				<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Po</label>
+				          </div>
+				          <div class= "col-md-8 form group">
+			         <input type="text" class="form-control" placeholder="Po" [(ngModel)]="po" formControlName="po">
+
+				          </div>
+				  	</div>        
+			 	 </div>
+			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Container No</label>
+				          </div>
+				          <div class= "col-md-8 form group">
+			         <input type="text" class="form-control" placeholder=" Container No" [(ngModel)]="containerNo" formControlName="containerNo">
+					          
+				          </div>
+				  	</div>        
+			 	 </div>
+			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+				  	<div class="row ">
+				  		<div class="col-md-4 form group">
+				            <label for="name">Lot No</label>
+				          </div>
+				          <div class= "col-md-8 form group">
+			         <input type="text" class="form-control" placeholder="Lot No" [(ngModel)]="lotNo" formControlName="lotNo">
+					           
+				          </div>
+				  	</div>        
+			 	 </div>
+				<!-- </div>	 -->
+			<!-- </div> -->
+			</div>
+		</div>
+		<div class=" row justify-content-center">
+				<p>
+				  <!-- <button  type="button" class="btn btn-primary">Save</button> -->
+				  <button  [disabled]="!dataForm.valid"  type="submit" class="btn btn-success">Save & Submit</button>
+				  <button  (click) = "dataForm.reset()" type="button" class="btn btn-default">Cancel</button> 
+				</p>
+			</div>
+			
+		</div>
+</form>
+
+<app-record-list></app-record-list>

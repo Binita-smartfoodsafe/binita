@@ -1,0 +1,102 @@
+<section class="login p-fixed d-flex text-center bg-primary common-img-bg" [ngStyle]="{'background-image': 'url(' + backgroundImgUrl + ')'}">
+  <!-- <img src="assets/images/auth/pic.png" class="img-fluid"> -->
+  <!-- Container-fluid starts -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- Authentication card start -->
+        <div class="login-card card-block auth-body float-left">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate class="float-lg-left">
+            <div class="text-center">
+              <!-- <img src="assets/images/logo.png" alt="Gradient Able"> -->
+            </div>
+            <div class="auth-box">
+              <div class="row m-b-20">
+                <div class="row">
+                  <div class="col-md-10">
+                    <h3 class="text-left ">Log in</h3>
+                  </div>
+                  <div class="col-md-2">
+                    <img [src]="logoUrl"  class="float-right re-size" alt="small-logo.png" >
+                  </div>
+                </div>
+              </div>
+              <hr/>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Your Email Address" formControlName="username">
+                <div class="messages text-danger clearfix float-left" *ngIf="loginForm.controls.username.errors && (loginForm.controls.username.dirty || loginForm.controls.username.touched)">
+                  <p *ngIf="loginForm.controls.username.errors.required">Username is required</p>
+                  <p *ngIf="loginForm.controls.username.errors.minlength">Username must be {{loginForm.controls.username.errors.minlength.requiredLength}} characters long</p>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                <div class="messages text-danger clearfix float-left" *ngIf="loginForm.controls.password.errors && (loginForm.controls.password.dirty || loginForm.controls.password.touched)">
+                  <p *ngIf="loginForm.controls.password.errors.required">Password is required</p>
+                  <p *ngIf="loginForm.controls.password.errors.minlength">Password must be {{loginForm.controls.password.errors.minlength.requiredLength}} characters long</p>
+                </div>
+              </div>
+
+              <div class="row m-t-25 text-left">
+                <div class="col-12">
+                  <div class="checkbox">
+                    <!-- <label>
+                      <input type="checkbox" value="">
+                      <span class="cr"><i class="cr-icon fa fa-check txt-primary"></i></span>
+                      <span class="text-inverse">Remember me</span>
+                    </label> -->
+                  </div>
+                  <div class="sub-text right f-right">
+                    <a href [routerLink]="['/login/reset']" class="text-right f-w-600 text-inverse">Forgot Password?</a>
+                  </div>
+                </div>
+              </div>
+              <div class="row m-t-30">
+                <div class="col-md-12">
+                  <!-- <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button> -->
+                </div>
+              </div>
+              <hr/>
+              <!-- <div class="row"> -->
+              <div class="row m-t-25 text-left">
+                <div class="col-12">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="">
+                      <!-- <span class="cr"><i class="cr-icon fa fa-check txt-primary"></i></span> -->
+                      <span class="sub-text text-inverse">Remember me</span>
+                    </label>
+                  </div>
+                  <div class="forgot-phone text-right f-right">
+                    <!-- <a [routerLink]="['/auth/forgot']" class="text-right f-w-600 text-inverse"> Forgot Password?</a> -->
+                    <!--  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button> -->
+                    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">
+                    Sign in</button>
+
+                  </div>
+                </div>
+              </div>
+              <!--  <div class="col-md-10">
+                  <p class="text-inverse text-left m-b-0"> Remember my email address on this computer</p>
+                  <p class="text-inverse text-left"><b>Your Authentication Team</b></p>
+                </div> -->
+              <!-- <div class="col-md-2">
+                  <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
+                </div> -->
+              <!-- </div> -->
+
+            </div>
+          </form>
+          <!-- end of form -->
+        </div>
+        <!-- Authentication card end -->
+      </div>
+      <!-- end of col-sm-12 -->
+    </div>
+    <!-- end of row -->
+  </div>
+  <!-- end of container-fluid -->
+</section>
+
+<!-- *ngFor="let img of images" -->

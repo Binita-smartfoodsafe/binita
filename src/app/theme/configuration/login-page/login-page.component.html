@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-sm-12">
+    <!-- Basic Form Inputs card start -->
+    <app-card [title]="'Login Page Cofiguration'" [cardOptionBlock]="true">
+      <!-- <h4 class="sub-title">Basic Inputs</h4>
+      <p>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</p> -->
+      <form [formGroup]="loginCofigurationForm" novalidate>
+        
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Theme Color</label>
+          <div class="col-sm-4">
+            <input class="form-control" [(colorPicker)]="themeColor" [style.background]="basicColor" [value]="themeColor" formControlName="themeColorValue" [cpPosition]="'bottom'" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Backgroung Image</label>
+          <div class="col-sm-4">
+            <!-- <input type="file" class="form-control" id="filePicker" formControlName="backgroungImage" (change)="handleFileSelect($event)"> -->
+            <input type="file" id="backgroungImage"  (change)="onBackgroungImageChange($event)" #fileInput1 >
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Logo Image</label>
+          <div class="col-sm-4">
+            <!-- <input type="file" class="form-control" id="filePicker" formControlName="logoImage" (change)="handleFileSelect($event)"> -->
+            <input type="file" id="logoImage"  (change)="onLogoImageChange($event)" #fileInput2>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2"></label>
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary m-b-0" [disabled]="loginCofigurationForm.invalid  || loading" (click)="onSubmit()">Submit</button>
+          </div><!-- [disabled]="!loginCofigurationForm.valid" -->
+        </div>
+      </form>
+      
+    </app-card>
+    
+  </div>
+</div>
