@@ -9,6 +9,11 @@ import { AuthService } from '../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { GLOBAL_PROPERTIES } from './../../common/common.constant';
+import {NavController,ModalController,LoadingController, AlertController} from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase/app';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+
 
 @Component({
   selector: 'app-login',
@@ -23,7 +28,8 @@ export class LoginComponent implements OnInit {
   logoUrl: any;
   backgroundImgUrl: any;
 
-  constructor(private _dataService: DataService, private _router: Router, private fb: FormBuilder, private loginSrvc: LoginService, private comonSrvc: CommonService, private locationStrategy: LocationStrategy, protected localStorage: AsyncLocalStorage) {
+  constructor(private _dataService: DataService, private _router: Router, private fb: FormBuilder, private loginSrvc: LoginService, private comonSrvc: CommonService, private locationStrategy: LocationStrategy, protected localStorage: AsyncLocalStorage
+    ,private navCtrl: NavController ,private alertCtrl: AlertController,private loadingCtrl: LoadingController,private modalCtrl: ModalController) {
     var absUrl = (<any>this.locationStrategy)._platformLocation.location.href;
     var splittedArray = absUrl.split(':')[0].split('/');
     this.companyId = splittedArray[0];
@@ -71,4 +77,64 @@ export class LoginComponent implements OnInit {
       });
   };
 
-}
+  showForgotPassword()
+  {
+    let prompt=this.alertCtrl.create({
+      title:'Enter Your Email',
+      message:"A new password will be sent to your email",
+      inputs:[
+      {
+        name:'recoverEmail',
+        placeholder:'you@example.com'
+      },
+    ],
+    buttons:
+    [
+      {
+        text:'Cancel',
+        handler:data=>
+        {
+           console.log('Cancel clicked');
+        }
+      },
+      {
+        text:'Submit',
+        handler:data=>{
+          //add preloader
+          let loading=this.loadingCtrl.create({
+            dismissOnPageChange: true,
+            content:'Reseting your password...'
+          });
+          //call loginService
+          this.loginSrvc.showForgotPassword(data.recoverEmail).then(()=>{
+
+              loading.dismiss().then(()=>{
+                //show a pop up
+                let alert=this.alertCtrl.create({
+                  title:'Check Your email',
+                  subTitle: 'password reset successfull',
+                  buttons:['OK']
+                });
+                alert.present();
+              })
+              
+            }, error => {
+                  let alert=this.alertCtrl.create({
+                      title:'Error loggin in',
+                      subTitle: error.message,
+                      buttons:['OK']
+                    });
+                    alert.present();
+                 });
+                
+              }
+            }
+          ]
+        });      
+
+    prompt.present();
+     }
+  };
+
+
+
