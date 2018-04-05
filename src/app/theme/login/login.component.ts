@@ -15,6 +15,7 @@ import * as firebase from 'firebase/app';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
