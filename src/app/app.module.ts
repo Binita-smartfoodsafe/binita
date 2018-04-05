@@ -39,6 +39,7 @@ import { BrokerService } from './service/broker.service';
 import { UploaddataService } from './service/uploaddata.service';
 import { StyleComponent } from './style/style.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { FileUploadModule } from 'ng2-file-upload';
    AuthService,
    RawMaterialsService,
    SupplierService,
+   AngularFireAuthModule,
    PlantService,
    ProductService,
   BrokerService,
